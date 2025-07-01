@@ -19,10 +19,13 @@ An intelligent web agent that classifies user queries, retrieves similar past re
 
 ```mermaid
 flowchart TD
-    A[User Query] --> B[Classify as Informational using Gemini]
-    B -->|YES| C[Check Cache for Similar Query Embeddings]
-    C -->|Found| D[Return Cached Summary]
-    C -->|Not Found or Refresh| E[Search Web (Bing/Google)]
+    A[User Query] --> B{Is Informational?}
+    B -- Yes --> C[Check Cache for Similar Query Embedding]
+    B -- No --> Z[Reject: Not an Informational Query]
+
+    C -- Found --> D[Return Cached Summary]
+    C -- Not Found or User Refresh --> E[Search Web (Bing/Google)]
+
     E --> F[Scrape Top N Pages Concurrently]
     F --> G[Summarize using Gemini]
     G --> H[Display Summary & Sources]
@@ -97,7 +100,7 @@ Results are stored in `query_cache.json` with:
 ## ⚠️ Notes
 
 * ❗ Only **informational queries** (like "how does inflation work?") are processed.
-* ❌ Queries like “Hi”, “What’s the weather” are rejected.
+* ❌ Queries like “Walk my pet”, “Add apples to grocery” are rejected.
 
 ---
 

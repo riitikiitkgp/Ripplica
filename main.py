@@ -20,7 +20,7 @@ CACHE_FILE = "query_cache.json"
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-GEMINI_API_KEY = "AIzaSyAxugT26Z-vA7stVcaXmIgG9abn4f12RXY"  
+GEMINI_API_KEY = "GEMINI_API_KEY = "AIzaSyCVOOgaSlE88Yy0WTUmWcAxZ8tvxr4SD2o"   
 CACHE_FILE = "query_cache.json"
 MAX_PAGES_TO_SCRAPE = 5
 SCRAPE_TIMEOUT = 30000  # 30 seconds timeout per page

@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 GEMINI_API_KEY = "AIzaSyAxugT26Z-vA7stVcaXmIgG9abn4f12RXY"  
 CACHE_FILE = "query_cache.json"
-SIMILARITY_THRESHOLD = 0.7  # Adjust this value (0.0 to 1.0)
 MAX_PAGES_TO_SCRAPE = 5
 SCRAPE_TIMEOUT = 30000  # 30 seconds timeout per page
 

@@ -1,0 +1,46 @@
+       ┌────────────────────────────────────┐
+       │          User Query Input          │
+       └────────────────────────────────────┘
+                         │
+                         ▼
+       ┌────────────────────────────────────┐
+       │ 1. Query Classification (Gemini)   │◄───── Heuristic filter for search-style queries
+       └────────────────────────────────────┘
+                         │ YES
+                         ▼
+       ┌────────────────────────────────────┐
+       │ 2. Check Cache with Embeddings     │
+       │  ↳ Compute Query Embedding         │
+       │  ↳ Compare Cosine Similarity       │
+       └────────────────────────────────────┘
+                │              │
+                │ FOUND        │ NOT FOUND / REFRESH
+                ▼              ▼
+  ┌─────────────────────┐   ┌────────────────────────────┐
+  │  Return Cached Data │   │ 3. Perform Web Search       │
+  └─────────────────────┘   │    using Bing/Direct +     │
+                            │    Scraping via Playwright │
+                            └────────────────────────────┘
+                                         │
+                                         ▼
+                        ┌────────────────────────────────────┐
+                        │ 4. Scrape Top N URLs Concurrently   │
+                        │    ↳ Extract title & main content   │
+                        └────────────────────────────────────┘
+                                         │
+                                         ▼
+                        ┌────────────────────────────────────┐
+                        │ 5. Summarize using Gemini LLM       │
+                        │    ↳ Feed cleaned scraped content   │
+                        └────────────────────────────────────┘
+                                         │
+                                         ▼
+                        ┌────────────────────────────────────┐
+                        │ 6. Cache New Result + Embedding     │
+                        │    ↳ Save to JSON cache file        │
+                        └────────────────────────────────────┘
+                                         │
+                                         ▼
+                        ┌────────────────────────────────────┐
+                        │      Display Summary + Sources      │
+                        └────────────────────────────────────┘

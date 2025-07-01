@@ -15,25 +15,6 @@ An intelligent web agent that classifies user queries, retrieves similar past re
 
 ---
 
-## 🧱 Architecture Overview
-
-```mermaid
-flowchart TD
-    A[User Query] --> B{Is Informational?}
-    B -- Yes --> C[Check Cache for Similar Query Embedding]
-    B -- No --> Z[Reject: Not an Informational Query]
-
-    C -- Found --> D[Return Cached Summary]
-    C -- Not Found or User Refresh --> E[Search Web (Bing/Google)]
-
-    E --> F[Scrape Top N Pages Concurrently]
-    F --> G[Summarize using Gemini]
-    G --> H[Display Summary & Sources]
-    H --> I[Cache New Result + Embedding]
-```
-
----
-
 ## 📦 Dependencies
 
 Install all required packages:
